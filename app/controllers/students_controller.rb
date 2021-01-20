@@ -9,9 +9,29 @@ class StudentsController < ApplicationController
   end
 
   def new
+    @student = Student.new 
   end
 
   def create
+    @student = Student.create(
+      {
+        first_name: params[:first_name],
+        last_name: params[:last_name]
+      }
+    )
+    redirect_to student_path(@student)
   end
+  
+  
+  # def create
+  #   new_student = Student.create(student_params)
+  #   redirect_to student_path(new_student)
+  # end
+
+  # private
+  
+  # def student_params
+  #   params.require(:student).permit(:first_name, :last_name)
+  # end
 
 end
